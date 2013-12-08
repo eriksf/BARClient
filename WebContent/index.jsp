@@ -24,11 +24,7 @@
           top: 500;
         }
     </style>
-</head>
-<body>
-<div id="cy"></div>
-
-<script type="text/javascript">
+    <script type="text/javascript">
     $(loadCy = function(){
     options = {
       style: cytoscape.stylesheet()
@@ -83,27 +79,34 @@
     $('#cy').cytoscape(options);
     });
     
-    $('button').button().click(function(e) {
-        $("#dialog").dialog({
-            bgiframe: true,
-            resizable: false,
-            height: 140,
+    $(function(){
+        $('#dialog').dialog({
+            autoOpen: false,
+            height: 300,
             modal: true,
-            overlay: {
-                backgroundColor: '#000',
-                opacity: 0.5
-            },
             buttons: {
-                'OK': function() { $(this).dialog('close'); }
+                "Ok": function() { $('#dialog').dialog("close"); },
+                "Cancel": function() { $('#dialog').dialog("close"); }
             }
+        });
+    
+        $('button').button().click(function(){
+            $('#dialog').dialog("open");
+            return false;
         });
     });
     
-    loadCy();
-</script>
+    //loadCy();
+    </script>
+</head>
+<body>
 <hr>
 Query: <input type="text" id="query"/> <button>Submit</button>
 <hr>
+<div id="dialog" title="Basic Dialog">
+    <p>The submit button was clicked!</p>
+</div>
+<!--<div id="cy"></div> -->
 
 </body>
 </html>
